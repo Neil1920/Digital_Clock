@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock with Dark Mode</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            color: #333;
+            transition: background 0.5s, color 0.5s;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        #clock {
+            font-size: 5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            color: black;
+            text-shadow: 2px 2px 10px rgba(255, 71, 87, 0.5);
+        }
+        .dark-mode {
+            background-color: #1e1e1e;
+            color: #fff;
+        }
+        .dark-mode .container {
+            background: rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.1);
+        }
+        .dark-mode #clock {
+            color: #ffcc00;
+            text-shadow: 2px 2px 10px rgba(255, 204, 0, 0.5);
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            background-color: black;
+            color: #fff;
+            border-radius: 30px;
+            transition: background 0.3s ease;
+            box-shadow: 0px 3px 10px rgba(255, 71, 87, 0.5);
+        }
+        button:hover {
+            background-color: #e84118;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="clock">00:00:00</div>
+        <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    </div>
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+        
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>
